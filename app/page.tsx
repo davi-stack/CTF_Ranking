@@ -18,9 +18,9 @@ export default function Home() {
         priority
         className="transition-transform duration-300 group-hover:scale-105"
       />
-      {/* <h1 className="text-2xl font-bold text-primary transition-all duration-300 group-hover:text-red-400">
+      <h1 className="text-2xl hidden md:block font-bold text-primary py-2">
         RED HACK
-      </h1> */}
+      </h1>
     </div>
 
     {/* NAV */}
@@ -105,12 +105,12 @@ export default function Home() {
         </p>
 
         <a
-          href="https://desecsecurity.com/curso/introducao-pentest"
-          target="_blank"
-          className="border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-black transition"
-        >
-          Acessar Curso
-        </a>
+  href="https://desecsecurity.com/curso/introducao-pentest"
+  target="_blank"
+  className="border border-red-500 text-red-500 px-6 py-3 rounded-lg hover:bg-red-500 hover:text-white transition-all duration-300"
+>
+  Acessar Curso
+</a>
       </section>
 
       {/* 📩 CONTATO */}
