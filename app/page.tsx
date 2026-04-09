@@ -1,53 +1,11 @@
 import Image from "next/image";
-
+import { TopNav } from "@/components/TopNav";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       
       {/* 🔴 NAVBAR */}
-      <header className="w-full border-b border-white/10 bg-black/80 backdrop-blur">
-  <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
-    
-    {/* LOGO + NOME */}
-    <div className="flex items-center gap-3 group cursor-pointer">
-      <Image
-        src="/logo.png"
-        alt="RED HACK Logo"
-        width={110}
-        height={40}
-        priority
-        className="transition-transform duration-300 group-hover:scale-105"
-      />
-      <h1 className="text-2xl hidden md:block font-bold text-primary py-2">
-        RED HACK
-      </h1>
-    </div>
-
-    {/* NAV */}
-    <nav className="flex gap-8 text-base font-medium">
-      <a
-        href="#sobre"
-        className="relative transition-colors hover:text-primary"
-      >
-        Sobre
-      </a>
-
-      <a
-        href="#programacao"
-        className="relative transition-colors hover:text-primary"
-      >
-        Programação
-      </a>
-
-      <a
-        href="#contato"
-        className="relative transition-colors hover:text-primary"
-      >
-        Contato
-      </a>
-    </nav>
-  </div>
-</header>
+      <TopNav/>
 
       {/* 🔥 HERO */}
       <section className="flex flex-col items-center justify-center text-center py-24 px-6">
@@ -67,7 +25,7 @@ export default function Home() {
       </section>
 
       {/* 🧠 SOBRE */}
-      <section id="sobre" className="max-w-5xl mx-auto px-6 py-16">
+      <section id="sobre" className="flex flex-col items-center justify-center text-center py-24 px-6">
         <h3 className="text-3xl font-bold text-primary mb-6">
           O que é CTF?
         </h3>
@@ -80,20 +38,49 @@ export default function Home() {
       </section>
 
       {/* 📅 PROGRAMAÇÃO */}
-      <section id="programacao" className="bg-black/60 py-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h3 className="text-3xl font-bold text-primary mb-6">
-            Programação
-          </h3>
+      <section id="programacao" className="bg-black/60 py-20 px-6">
+  <div className="max-w-5xl mx-auto">
+    
+    <h3 className="text-3xl font-bold text-primary mb-10 text-center">
+      Programação
+    </h3>
 
-          <ul className="space-y-4 text-zinc-300">
-            <li>🕘 09:00 - Abertura</li>
-            <li>🚀 09:30 - Início dos desafios</li>
-            <li>🍽️ 12:00 - Intervalo</li>
-            <li>🏁 15:30 - Encerramento</li>
-          </ul>
+    <div className="space-y-4">
+
+      {[
+        { time: "09:00", title: "Abertura", icon: "🕘" },
+        { time: "09:30", title: "Apresentações e treinamentos", icon: "🎤" },
+        { time: "12:00", title: "Intervalo", icon: "🍽️" },
+        { time: "13:30", title: "Início dos desafios", icon: "💻" },
+        { time: "16:30", title: "Intervalo", icon: "☕" },
+        { time: "17:30", title: "Encerramento", icon: "🏁" },
+      ].map((item, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-4 bg-zinc-900 border border-white/10 rounded-xl p-4 hover:border-red-500 transition"
+        >
+          
+          {/* Ícone */}
+          <div className="text-2xl">
+            {item.icon}
+          </div>
+
+          {/* Horário */}
+          <div className="text-red-500 font-bold w-20">
+            {item.time}
+          </div>
+
+          {/* Descrição */}
+          <div className="text-zinc-300">
+            {item.title}
+          </div>
+
         </div>
-      </section>
+      ))}
+
+    </div>
+  </div>
+</section>
 
       {/* 📚 PREPARAÇÃO */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
@@ -114,21 +101,24 @@ export default function Home() {
       </section>
 
       {/* 📩 CONTATO */}
-      <section id="contato" className="bg-black/80 py-16 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <h3 className="text-3xl font-bold text-primary mb-6">
-            Contato
-          </h3>
+      <section
+  id="contato"
+  className="flex flex-col items-center justify-center text-center py-24 px-6"
+>
+  <div className="max-w-5xl mx-auto text-center">
+    <h3 className="text-3xl font-bold text-white mb-6">
+      Contato
+    </h3>
 
-          <p className="text-zinc-400">
-            Dúvidas? Entre em contato pelo e-mail:
-          </p>
+    <p className="text-zinc-400">
+      Dúvidas? Entre em contato pelo e-mail:
+    </p>
 
-          <p className="text-primary mt-2">
-          redhackeventos@gmail.com
-          </p>
-        </div>
-      </section>
+    <p className="text-red-500 mt-2 font-semibold">
+      redhackeventos@gmail.com
+    </p>
+  </div>
+</section>
 
       {/* ⚫ FOOTER */}
       <footer className="mt-auto border-t border-white/10 py-6 text-center text-zinc-500 text-sm">
