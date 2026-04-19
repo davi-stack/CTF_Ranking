@@ -1,39 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Red Hack CTF
 
-## Getting Started
+Plataforma de CTF com dois perfis de uso:
 
-First, run the development server:
+- competidor: visualiza descrições das flags, acompanha progresso, submete flags e consulta ranking estilo BOCA
+- administrador: importa `usuarios.csv` e `flags.csv`, edita pontuação global por número de flag, adiciona observações por competidor e acompanha submissões
+
+## Requisitos
+
+- Node.js 20+
+- variáveis `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` e `JWT_SECRET`
+
+## Bootstrap inicial
+
+1. Execute o SQL em [supabase/schema.sql](supabase/schema.sql) no editor SQL do Supabase.
+2. Crie o usuário admin:
+
+```bash
+npm run admin:create -- --password="sua-senha-forte"
+```
+
+3. Inicie a aplicação:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Acesse `/login` e entre com `admin`.
+5. No painel `/admin`, use a importação dos CSVs para carregar `usuarios.csv` e `flags.csv` diretamente pela interface.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tasks VS Code
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O workspace inclui [tasks.json](.vscode/tasks.json) com estas tasks:
 
-## Learn More
+- `CTF: dev`
+- `CTF: lint`
+- `CTF: build`
+- `CTF: create admin`
 
-To learn more about Next.js, take a look at the following resources:
+## Fluxos principais
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Competidor
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/ctf`: dashboard com descrições, status e pontuação das flags
+- `/ctf/submit`: submissão protegida por cookie `httpOnly`, verificação de origem e rate limit
+- `/ctf/ranking`: ranking estilo BOCA com `master.png`
 
-## Deploy on Vercel
+### Administrador
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/admin`: importar CSV, ver resumo dos competidores e abrir cada flag
+- `/admin/flags/[numero]`: editar título, descrição, disponibilidade, pontuação e observações por usuário
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Interface_CTF
-# CTF_Ranking
-# CTF_Ranking
+## Segurança aplicada
+
+- sessão em cookie `httpOnly` com `sameSite=strict`
+- proteção de origem para `POST` sensíveis
+- rate limiting de login e submissão para reduzir brute-force
+- bloqueio de reenvio de flag já resolvida
+- `admin` tratado como papel administrativo pelo login

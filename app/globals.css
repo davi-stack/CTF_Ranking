@@ -1,100 +1,97 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #040404;
+  --foreground: #f3f4f6;
+  --primary: #ef4444;
+  --accent: #b91c1c;
+  --surface: #111111;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-.red-button {
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.red-button:hover {
-  background-color: var(--primary);
-  color: white;
-}
-.hide-mobile {
-  display: block;
-}
-
-@media (max-width: 768px) {
-  .hide-mobile {
-    display: none;
-  }
-}
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-:root {
-  /* 🎨 CORES PRINCIPAIS */
-  --primary: #ff0000;      /* vermelho */
-  --secondary: #000000;    /* preto */
-  --tertiary: #ffffff;     /* branco */
-
-  /* 🌗 BASE */
-  --background: #0a0a0a;
-  --foreground: #ededed;
-}
-
-/* 🔥 Tailwind Theme Mapping */
 @theme inline {
   --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-tertiary: var(--tertiary);
-
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-display);
   --font-mono: var(--font-geist-mono);
 }
 
-/* 🌑 Dark Mode já padrão hacker */
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #ffffff;
-    --foreground: #171717;
-  }
+* {
+  box-sizing: border-box;
 }
 
-/* 🧠 BASE */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
+  position: relative;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 10% 5%, rgba(239, 68, 68, 0.18), transparent 30%),
+    radial-gradient(circle at 88% 18%, rgba(185, 28, 28, 0.2), transparent 28%),
+    linear-gradient(180deg, #050505 0%, #0b0707 50%, #050505 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-display), sans-serif;
 }
 
-/* 💻 Estética hacker opcional */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  mix-blend-mode: soft-light;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle at 50% -10%, rgba(239, 68, 68, 0.14), transparent 45%);
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+main,
+header,
+footer,
+section,
+article,
+form,
+aside {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  text-shadow: 0 0 22px rgba(239, 68, 68, 0.18);
+}
+
 ::selection {
   background: var(--primary);
-  color: white;
+  color: #1f0505;
 }
 
-/* 🔴 Glow effect */
-.text-primary {
-  color: var(--primary);
-}
-
-.text-primary-glow {
-  color: var(--primary);
-  text-shadow: 0 0 8px var(--primary);
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }

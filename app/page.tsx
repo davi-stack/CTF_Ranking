@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { TopNav } from "@/components/TopNav";
 export default function Home() {
   return (
@@ -9,16 +8,17 @@ export default function Home() {
 
       {/* 🔥 HERO */}
       <section className="flex flex-col items-center justify-center text-center py-24 px-6">
-        <h2 className="text-5xl font-bold text-primary mb-4">
+        <p className="mb-3 text-xs uppercase tracking-[0.42em] text-red-300/80">Neon Breach Protocol</p>
+        <h2 className="text-5xl font-bold text-primary mb-4 md:text-6xl">
           RED HACK CTF
         </h2>
-        <p className="max-w-xl text-lg text-zinc-400 mb-8">
+        <p className="max-w-xl text-lg text-zinc-300 mb-8">
           Only those who think outside the box will proceed.
         </p>
 
         <a
           href="https://forms.gle/tLomdomFXAenhoLw9"
-          className="bg-primary hover:bg-red-700 transition px-6 py-3 rounded-lg font-semibold"
+          className="rounded-lg border border-red-400/40 bg-red-500 px-6 py-3 font-semibold text-black transition hover:bg-red-400"
         >
           Inscreva-se
         </a>
@@ -29,7 +29,7 @@ export default function Home() {
         <h3 className="text-3xl font-bold text-primary mb-6">
           O que é CTF?
         </h3>
-        <p className="text-zinc-400 leading-relaxed">
+        <p className="text-zinc-300 leading-relaxed">
           Capture The Flag (CTF) é uma competição prática de segurança da informação
           onde participantes resolvem desafios de criptografia, web, engenharia reversa
           e forense. O objetivo é encontrar flags escondidas explorando vulnerabilidades
@@ -38,7 +38,7 @@ export default function Home() {
       </section>
 
       {/* 📅 PROGRAMAÇÃO */}
-      <section id="programacao" className="bg-black/60 py-20 px-6">
+      <section id="programacao" className="bg-black/65 py-20 px-6">
   <div className="max-w-5xl mx-auto">
     
     <h3 className="text-3xl font-bold text-primary mb-10 text-center">
@@ -87,7 +87,7 @@ export default function Home() {
         <h3 className="text-3xl font-bold text-primary mb-6">
           Quer se preparar?
         </h3>
-        <p className="text-zinc-400 mb-6">
+        <p className="text-zinc-300 mb-6">
           Recomendamos o curso introdutório de Pentest da Desec:
         </p>
 
@@ -110,7 +110,7 @@ export default function Home() {
       Contato
     </h3>
 
-    <p className="text-zinc-400">
+    <p className="text-zinc-300">
       Dúvidas? Entre em contato pelo e-mail:
     </p>
 
@@ -121,7 +121,7 @@ export default function Home() {
 </section>
 
       {/* ⚫ FOOTER */}
-      <footer className="mt-auto border-t border-white/10 py-6 text-center text-zinc-500 text-sm">
+      <footer className="mt-auto border-t border-red-500/20 py-6 text-center text-zinc-500 text-sm">
         © 2026 RED HACK CTF • Brain / Algar Telecom
       </footer>
     </div>

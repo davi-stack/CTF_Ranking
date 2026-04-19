@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CTF: dev",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev"],
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "CTF: lint",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint"],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "CTF: build",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "CTF: create admin",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "admin:create",
+        "--",
+        "--password=${input:adminPassword}"
+      ],
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "adminPassword",
+      "type": "promptString",
+      "description": "Senha para o usuário admin"
+    }
+  ]
+}
