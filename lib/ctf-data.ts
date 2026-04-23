@@ -36,7 +36,12 @@ async function getUsers() {
     throw new Error(error.message);
   }
 
-  return (data as UserRow[]).filter((user) => user.login.toLowerCase() !== "admin");
+  return (data as UserRow[])
+    .filter((user) => user.login.toLowerCase() !== "admin")
+    .map((user) => ({
+      ...user,
+      nome: user.nome?.trim() || user.login,
+    }));
 }
 
 async function getFlagsForUsers() {

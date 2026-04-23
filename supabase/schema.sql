@@ -60,3 +60,11 @@ values
   (4, 'Flag 4', 'Desafio 4. Atualize esta descrição no painel administrativo.', 400, true),
   (5, 'Flag 5', 'Desafio 5. Atualize esta descrição no painel administrativo.', 500, true)
 on conflict (numero) do nothing;
+
+
+
+alter table public.usuarios
+  add nome text ;
+
+
+  

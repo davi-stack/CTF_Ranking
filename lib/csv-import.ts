@@ -6,7 +6,7 @@ import type { FlagCatalogRow, FlagRow, ImportPreview, UserRow } from "@/lib/type
 type ImportUserRow = Pick<UserRow, "id" | "nome" | "login" | "pass">;
 type ImportFlagRow = Pick<FlagRow, "id" | "numero" | "user_id" | "value">;
 
-const REQUIRED_USER_COLUMNS = ["id", "nome", "login", "senha_hash"];
+const REQUIRED_USER_COLUMNS = ["id", "login", "senha_hash"];
 const REQUIRED_FLAG_COLUMNS = ["id", "numero", "user_id", "value"];
 
 function parseCsv(text: string) {
@@ -84,7 +84,7 @@ function loadCsvPreviewFromText(usersText: string, flagsText: string): ImportPre
 function loadCsvPayloadFromText(usersText: string, flagsText: string) {
   const users = parseCsvWithValidation(usersText, REQUIRED_USER_COLUMNS, "usuarios.csv").map<ImportUserRow>((row) => ({
     id: row.id,
-    nome: row.nome,
+    nome: row.nome || row.login,
     login: row.login,
     pass: row.senha_hash,
   }));

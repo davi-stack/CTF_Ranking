@@ -6,7 +6,7 @@ import requests
 
 USER_CSV = "usuarios.csv"
 FLAGS_CSV = "flags.csv"
-BASE_URL = "http://localhost:3000"
+BASE_URL = "http://186.237.193.29:80"
 ORIGIN = BASE_URL
 TIMEOUT = 10
 DELAY_BETWEEN_USERS_SECONDS = 2
@@ -209,7 +209,7 @@ def main() -> None:
         if first_user is None:
             first_user = {"id": user_id, "login": login}
 
-        time.sleep(DELAY_BETWEEN_USERS_SECONDS)
+        time.sleep(0.1)
 
     print("\n=== Resumo ===")
     print("[OK] Todos os checks passaram." if overall_success else "[FAIL] Houve falhas nos checks.")

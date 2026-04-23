@@ -80,7 +80,7 @@ export function ImportCsvCard({ preview }: ImportCsvCardProps) {
             onChange={(event) => setUsersCsv(event.target.files?.[0] ?? null)}
             className="rounded-xl border border-white/15 bg-black px-3 py-2 text-sm text-zinc-300"
           />
-          <p className="text-xs text-zinc-400">Colunas obrigatórias: id, nome, login, senha_hash</p>
+          <p className="text-xs text-zinc-400">Colunas obrigatórias: id, login, senha_hash. Opcional: nome</p>
         </label>
 
         <label className="grid gap-2 rounded-2xl border border-white/10 bg-black/60 p-4">

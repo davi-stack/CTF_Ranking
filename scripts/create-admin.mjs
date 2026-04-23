@@ -1,8 +1,12 @@
 import process from "node:process";
 
 import bcrypt from "bcrypt";
+import nextEnv from "@next/env";
 
 import { createClient } from "@supabase/supabase-js";
+
+const { loadEnvConfig } = nextEnv;
+loadEnvConfig(process.cwd());
 
 function getEnv(name) {
   const value = process.env[name];

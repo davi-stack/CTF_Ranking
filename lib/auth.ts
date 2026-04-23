@@ -36,7 +36,7 @@ export function createSessionToken(user: Pick<UserRow, "id" | "login">) {
 export function applySessionCookie(response: NextResponse, token: string) {
   response.cookies.set(SESSION_COOKIE, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: false,
     sameSite: "strict",
     maxAge: SESSION_TTL_SECONDS,
     path: "/",
@@ -46,7 +46,7 @@ export function applySessionCookie(response: NextResponse, token: string) {
 export function clearSessionCookie(response: NextResponse) {
   response.cookies.set(SESSION_COOKIE, "", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: false,
     sameSite: "strict",
     expires: new Date(0),
     path: "/",
